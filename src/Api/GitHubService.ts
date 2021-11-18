@@ -8,6 +8,7 @@ export interface SearchUsersAttributes {
 
 export interface UserAttributes {
     location?: string,
+    login?: string,
     email?: string,
     name?: string,
     public_repos?: number,

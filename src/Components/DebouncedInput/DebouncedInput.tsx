@@ -4,8 +4,8 @@ import { SearchIcon } from "../../Assets";
 import style from "./style.module.scss";
 
 interface DebouncedInputProps {
-    delay: number;
-    onChange: any;
+    delay?: number;
+    onChange?: any;
     placeholder?: string;
 }
 
