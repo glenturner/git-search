@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { StringOrDefault } from '../../../utils/stringOrDefault';
+import { Flex } from '../..';
 import SR from 'scrollreveal';
 import Moment from 'moment';
-import { Flex } from '../..';
-import { SearchUsersAttributes, UserAttributes, GitHubService } from '../../../Api/GitHubService';
-import { StringOrDefault } from '../../../utils/stringOrDefault';
+import {
+    SearchUsersAttributes,
+    UserAttributes,
+    GitHubService
+} from '../../../Api/GitHubService';
 import style from './style.module.scss';
 
 export const Attribute = (props: any) => {
@@ -11,14 +15,13 @@ export const Attribute = (props: any) => {
         <>
             {
                 props?.attribute &&
-                <span className={style.attribute}>
+                <span id="attribute" className={style.attribute}>
                     {props.attribute}
                 </span>
             }
         </>
     );
 };
-
 
 interface ListItemProps {
     data: SearchUsersAttributes;
@@ -30,37 +33,44 @@ export const ListItem = React.memo((props: ListItemProps) => {
 
     useEffect(() => {
         SR().reveal('#user_list_item', { opacity: 0.2, viewFactor: 0.3, scale: 0.9, delay: 0, reset: false, distance: '50px', origin: 'left' });
+        SR().reveal('#attribute', { opacity: 0.2, viewFactor: 0.3, scale: 0.9, delay: 0, reset: false, distance: '50px', origin: 'left' });
+
         const getUserAttributes = async () => {
             const userData = await GitHubService.GetUserAttributesAsync(data.login || '')
             setUserAttributes(userData)
-
-            console.log(`user data in list item: `, userData);
-
         }
         getUserAttributes()
     }, [data])
 
     return (
         <Flex
-            className={style.list_item_wrapper}
             id="user_list_item"
+            className={style.list_item_wrapper}
             onClick={() => window.open(`${data?.html_url}`, '_blank')}>
-            <Flex className={style.avatar}>
+            <Flex center className={style.avatar}>
                 <img
-                    draggable="false"
+                    src={data?.avatar_url}
                     style={{ height: 100, width: 'auto' }}
+                    draggable="false"
                     alt="User Avatar"
-                    src={data?.avatar_url} />
+                />
             </Flex>
-            <Flex column center className={style.user_info}>
-                <span className={style.user_name}>
+            <Flex
+                column
+                center
+                className={style.user_info}>
+                <span
+                    id="attribute"
+                    className={style.user_name}>
                     {StringOrDefault(userAttributes?.name || data?.login)}
                 </span>
                 <Attribute attribute={StringOrDefault(userAttributes?.location)} />
                 <Attribute attribute={StringOrDefault(userAttributes?.email)} />
                 <Attribute attribute={`Public Repositories: ${userAttributes?.public_repos}`} />
-                <Attribute attribute={`Last Contribution: ${Moment(userAttributes?.updated_at).startOf('day').fromNow()}`} />
-                <Attribute attribute={`First Commit: ${Moment(userAttributes?.created_at).startOf('day').fromNow()}`} />
+                <Attribute
+                    attribute={`Last Contribution: ${Moment(userAttributes?.updated_at).startOf('day').fromNow()}`} />
+                <Attribute
+                    attribute={`First Commit: ${Moment(userAttributes?.created_at).startOf('day').fromNow()}`} />
             </Flex>
             <Flex className={style.hireable_indicator}>
                 <span

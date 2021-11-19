@@ -1,15 +1,16 @@
 
-
 .list_item_wrapper {
     background: #484C7A;
     box-shadow: rgb(255 255 255 / 10%) 0px 1px 0px 0px inset, rgb(0 0 0 / 50%) 0px 24px 41px 0px;
     color: #fff;
     border-radius: 5px;
     width: 500px;
+    height: 200px;
     margin: 10px;
     padding: 10px 0;
     position: relative;
     text-align: center;
+    user-select: none;
     justify-content: flex-start !important;
     flex-direction: row !important;
     transition: transform 0.2s ease-in-out 0s !important;
@@ -65,13 +66,21 @@
 }
 
 @media only screen and (max-width: 500px) {
-    .school_type {
+    .indicator_wrapper {
         font-size: 10px !important;
+    }
+    .list_item_wrapper {
+        align-items: center;
+        height: 360px;
+        flex-direction: column !important;
+    }
+    .user_name {
+        text-align: center;
+        align-self: center;
+    }
+    .attribute {
+        text-align: center;
+        align-self: center;
     }
 }
 
-@media only screen and (max-width: 385px) {
-    .list_item_wrapper {
-        height: 150px;
-    }
-}
