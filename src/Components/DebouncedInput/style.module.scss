@@ -1,0 +1,27 @@
+
+.input_wrapper {
+    width: 100%;
+    user-select: none;
+    box-shadow: inset 0px 1px 0px 0px rgb(255 255 255 / 10%), 0px 24px 41px 0px rgb(0 0 0 / 50%);
+    background: #484C7A;
+    border-radius: 5px;
+    padding-right: 3px;
+}
+
+.input_box {
+    width: 100%;
+    transition: all 100ms;
+    height: 50px;
+    background-color: #fff;
+    font-size: 18px;
+    outline: none;
+    padding: 0 10px;
+    background: #484C7A;
+    color: #fff;
+    caret-color: #fff;
+}
+
+.input_box::placeholder {
+    color: #bebec0;
+}
+
