@@ -5,7 +5,7 @@ import { Flex } from '..';
 export const AppLogo = () => {
 
     return (
-        <Flex style={{ padding: '20px' }}>
+        <Flex style={{ padding: '20px', cursor: 'pointer' }}>
             <img
                 onClick={() => window.open('https://resultstack.com/', '_blank')}
                 draggable="false"

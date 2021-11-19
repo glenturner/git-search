@@ -45,7 +45,7 @@ export const ListItem = React.memo((props: ListItemProps) => {
             className={style.list_item_wrapper}
             id="user_list_item"
             onClick={() => window.open(`${data?.html_url}`, '_blank')}>
-            <Flex className={style.avatar}>
+            <Flex center className={style.avatar}>
                 <img
                     draggable="false"
                     style={{ height: 100, width: 'auto' }}
