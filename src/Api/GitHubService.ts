@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export interface SearchUsersAttributes {
-    url?: string,
+    html_url?: string,
     avatar_url?: string,
     login?: string
 }
@@ -12,21 +12,20 @@ export interface UserAttributes {
     email?: string,
     name?: string,
     public_repos?: number,
+    hireable?: boolean,
     updated_at?: Date,
     created_at?: Date
 }
 
-// const response = await axios.get(`${baseUrl}/` + username)
 const searchUsersBaseUrl = 'https://api.github.com/search/users?q=';
 const GetUserAttributesBaseUrl = 'https://api.github.com/users/';
 
 const SearchUsersAsync = async (queryString: string): Promise<SearchUsersAttributes[]> => {
     let userData = []
     try {
-        const userDataResponse = await axios.get(`${searchUsersBaseUrl}${queryString} in:name in:login in:email type:user&per_page=20`)
+        const userDataResponse = await axios.get(`${searchUsersBaseUrl}${queryString} in:name in:login in:email type:user&per_page=10`)
 
         userData = userDataResponse?.data?.items?.map((users: SearchUsersAttributes) => { return users })
-
     } catch (error) {
         console.error(error);
     }
@@ -37,12 +36,7 @@ const GetUserAttributesAsync = async (name: string) => {
     let userAttributes;
     try {
         let userAttributesResponse = await axios.get(`${GetUserAttributesBaseUrl}` + name)
-
-        console.log(`user atts `, userAttributesResponse.data);
-
         userAttributes = userAttributesResponse.data;
-
-
     } catch (error) {
         console.error(error);
     }
