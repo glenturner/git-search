@@ -21,7 +21,7 @@ export const DebouncedInput = React.memo((props: DebouncedInputProps) => {
     const handleChange = useCallback(({ target }: ChangeEvent<HTMLInputElement>) => { setValue(target.value) }, [])
 
     useEffect(() => {
-        const debounceTimeout = setTimeout(() => { onChange(value) }, delay)
+        const debounceTimeout = setTimeout(() => { value && onChange(value) }, delay)
         return () => { clearTimeout(debounceTimeout) }
     }, [delay, value])
 

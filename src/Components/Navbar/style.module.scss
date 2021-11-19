@@ -1,0 +1,22 @@
+
+.header_wrapper {
+    z-index: 999;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    // background-color: #fcfffcc4;
+    background-color: #f2f6fa;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    box-sizing: border-box;
+    padding: 5px 15px;
+    padding-left: 100px;
+    user-select: none;
+}
+
+@media screen and (max-width: 1000px) {
+    .header_wrapper {
+        padding-left: 40px !important;
+        padding-bottom: 5px !important;
+    }
+}
