@@ -34,7 +34,7 @@ const SearchUsersAsync = async (queryString: string): Promise<SearchUsersAttribu
     let userData = []
     try {
         const request = await axios.get(
-            `${searchUsersBaseUrl}${queryString} in:name in:login in:email type:user&per_page=10`, { headers })
+            `${searchUsersBaseUrl}${queryString} in:name in:login in:email type:user&per_page=12`, { headers })
 
 
         console.log(`REQUEST FOR SEARCH USERS `, request);

@@ -32,18 +32,20 @@
 .user_info {
     flex: 1.5;
     align-items: flex-start !important;
-    margin-right: 20px;
 
     .user_name {
         padding: 5px 0;
         font-weight: 500;
-        font-size: 20px;
-        letter-spacing: 0.04991em;
+        font-size: 24px;
+        letter-spacing: 0.06em;
     }
-    
-    .location {
-        font-size: 14px;
-    }
+}
+
+.attribute {
+    font-size: 14px;
+    letter-spacing: 0.07em;
+    font-weight: 500;
+    padding: 3px 0;
 }
 
 .hireable_indicator {

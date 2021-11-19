@@ -22,7 +22,7 @@ export const UserSearch = (props: UserSearchProps) => {
             center>
             <Flex center className={style.search_wrapper}>
                 <DebouncedInput
-                    placeholder="Search a github user by name or email"
+                    placeholder="Search a github user by name or identical email"
                     onChange={onChange} />
             </Flex>
             {data?.map((d: any, key: any) => { return <ListItem key={key} data={d} /> })}

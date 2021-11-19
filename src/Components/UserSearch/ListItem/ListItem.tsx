@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import SR from 'scrollreveal';
+import Moment from 'moment';
 import { Flex } from '../..';
 import { SearchUsersAttributes, UserAttributes, GitHubService } from '../../../Api/GitHubService';
 import { StringOrDefault } from '../../../utils/stringOrDefault';
@@ -52,8 +53,14 @@ export const ListItem = React.memo((props: ListItemProps) => {
                     src={data?.avatar_url} />
             </Flex>
             <Flex column center className={style.user_info}>
-                <span className={style.user_name}>{StringOrDefault(userAttributes?.name || data?.login)}</span>
-                <span className={style.location}>{StringOrDefault(userAttributes?.location)}</span>
+                <span className={style.user_name}>
+                    {StringOrDefault(userAttributes?.name || data?.login)}
+                </span>
+                <Attribute attribute={StringOrDefault(userAttributes?.location)} />
+                <Attribute attribute={StringOrDefault(userAttributes?.email)} />
+                <Attribute attribute={`Public Repositories: ${userAttributes?.public_repos}`} />
+                <Attribute attribute={`Last Contribution: ${Moment(userAttributes?.updated_at).startOf('day').fromNow()}`} />
+                <Attribute attribute={`First Commit: ${Moment(userAttributes?.created_at).startOf('day').fromNow()}`} />
             </Flex>
             <Flex className={style.hireable_indicator}>
                 <span
@@ -62,6 +69,6 @@ export const ListItem = React.memo((props: ListItemProps) => {
                     {userAttributes?.hireable ? `Hireable` : `Working`}
                 </span>
             </Flex>
-        </Flex>
+        </Flex >
     );
 })
