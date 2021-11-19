@@ -20,12 +20,28 @@ export interface UserAttributes {
 const searchUsersBaseUrl = 'https://api.github.com/search/users?q=';
 const GetUserAttributesBaseUrl = 'https://api.github.com/users/';
 
+const headers: any = {
+    "Authorization": `token ${process.env.REACT_APP_GITHUB_TOKEN}`,
+    'User-Agent': 'glenturner',
+}
+
+const options = {
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+}
+
 const SearchUsersAsync = async (queryString: string): Promise<SearchUsersAttributes[]> => {
+
     let userData = []
     try {
-        const userDataResponse = await axios.get(`${searchUsersBaseUrl}${queryString} in:name in:login in:email type:user&per_page=10`)
+        const request = await axios.get(
+            `${searchUsersBaseUrl}${queryString} in:name in:login in:email type:user&per_page=10`, { headers })
 
-        userData = userDataResponse?.data?.items?.map((users: SearchUsersAttributes) => { return users })
+
+        console.log(`REQUEST FOR SEARCH USERS `, request);
+
+
+        userData = request?.data?.items?.map((users: SearchUsersAttributes) => { return users })
     } catch (error) {
         console.error(error);
     }
@@ -35,8 +51,11 @@ const SearchUsersAsync = async (queryString: string): Promise<SearchUsersAttribu
 const GetUserAttributesAsync = async (name: string) => {
     let userAttributes;
     try {
-        let userAttributesResponse = await axios.get(`${GetUserAttributesBaseUrl}` + name)
+        let userAttributesResponse = await axios.get(`${GetUserAttributesBaseUrl}` + name, { headers })
         userAttributes = userAttributesResponse.data;
+
+        console.log(`USER ATTS `, userAttributesResponse);
+
     } catch (error) {
         console.error(error);
     }
