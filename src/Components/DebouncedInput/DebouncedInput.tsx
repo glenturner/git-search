@@ -28,16 +28,16 @@ export const DebouncedInput = React.memo((props: DebouncedInputProps) => {
     return (
         <Flex center className={style.input_wrapper}>
             <img
-                draggable="false"
+                src={SearchIcon}
                 style={{ height: 20, width: 'auto', padding: '0 15px' }}
-                alt="Search Icon"
-                src={SearchIcon} />
+                draggable="false"
+                alt="Search Icon" />
             <input
-                type="search"
                 className={style.input_box}
-                placeholder={placeholder}
-                value={value}
+                type="search"
                 onChange={handleChange}
+                value={value}
+                placeholder={placeholder}
             />
         </Flex>
     )

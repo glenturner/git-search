@@ -24,22 +24,11 @@ const headers: any = {
     "Authorization": `token ${process.env.REACT_APP_GIT_TOKEN}`,
 }
 
-const options = {
-    xsrfCookieName: 'XSRF-TOKEN',
-    xsrfHeaderName: 'X-XSRF-TOKEN',
-}
-
 const SearchUsersAsync = async (queryString: string): Promise<SearchUsersAttributes[]> => {
 
     let userData = []
     try {
-        const request = await axios.get(
-            `${searchUsersBaseUrl}${queryString} in:name in:login in:email type:user&per_page=12`, { headers })
-
-
-        console.log(`REQUEST FOR SEARCH USERS `, request);
-
-
+        const request = await axios.get(`${searchUsersBaseUrl}${queryString} in:name in:login in:email type:user&per_page=12`, { headers })
         userData = request?.data?.items?.map((users: SearchUsersAttributes) => { return users })
     } catch (error) {
         console.error(error);
@@ -52,15 +41,11 @@ const GetUserAttributesAsync = async (name: string) => {
     try {
         let userAttributesResponse = await axios.get(`${GetUserAttributesBaseUrl}` + name, { headers })
         userAttributes = userAttributesResponse.data;
-
-        console.log(`USER ATTS `, userAttributesResponse);
-
     } catch (error) {
         console.error(error);
     }
     return userAttributes;
 }
-
 
 export const GitHubService = {
     SearchUsersAsync,

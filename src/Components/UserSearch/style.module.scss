@@ -2,11 +2,33 @@
 .user_list_wrapper {
     width: 100%;
     background-color: #23273B;
-    padding: 30px 0;
+    padding: 30px 0 175px 0;
 }
 
 .search_wrapper {
     width: 80%;
     padding: 40px;
+}
+
+.search_prompt {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    color: #EB72A2;
+    letter-spacing: 0.05em;
+}
+
+@media only screen and (max-width: 768px) {
+    .search_wrapper {
+        width: 95%;
+        padding: 20px 5px;
+    }
+    .user_list_wrapper {
+        padding-bottom: 20px;
+      
+    }
+    .search_prompt {
+        display: none !important;
+    }
 }
 
