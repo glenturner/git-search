@@ -21,7 +21,7 @@ const searchUsersBaseUrl = 'https://api.github.com/search/users?q=';
 const GetUserAttributesBaseUrl = 'https://api.github.com/users/';
 
 const headers: any = {
-    "Authorization": `token ${process.env.REACT_APP_GIT_TOKEN}`,
+    "Authorization": `token ${process.env.REACT_APP_GITHUB_ACCESS_TOKEN}`,
 }
 
 const SearchUsersAsync = async (queryString: string): Promise<SearchUsersAttributes[]> => {

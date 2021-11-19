@@ -9,7 +9,6 @@ function App() {
   const handleUserSearch = async (value: any) => {
     const data = await GitHubService.SearchUsersAsync(value)
     setFoundUsers(data)
-    console.log(`FOUND USERS: `, data);
   }
 
   return (
