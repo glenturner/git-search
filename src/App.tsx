@@ -7,9 +7,9 @@ function App() {
   const [debouncedValue, setDebouncedValue] = useState('');
 
   const handleUserSearch = async (value: any) => {
-    const foundUsers = await GitHubService.SearchUsersAsync(value)
-    setFoundUsers(foundUsers)
-    console.log(`FOUND USERS: `, foundUsers);
+    const data = await GitHubService.SearchUsersAsync(value)
+    setFoundUsers(data)
+    console.log(`FOUND USERS: `, data);
   }
 
   return (

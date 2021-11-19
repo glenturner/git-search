@@ -16,8 +16,11 @@ export const ListItem = React.memo((props: ListItemProps) => {
     useEffect(() => {
         SR().reveal('#user_list_item', { opacity: 0.2, viewFactor: 0.3, scale: 0.9, delay: 0, reset: false, distance: '50px', origin: 'left' });
         const getUserAttributes = async () => {
-            const foundUser = await GitHubService.GetUserAttributesAsync(data.login || '')
-            setUserAttributes(foundUser)
+            const userData = await GitHubService.GetUserAttributesAsync(data.login || '')
+            setUserAttributes(userData)
+
+            console.log(`user data in list item: `, userData);
+
         }
         getUserAttributes()
     }, [])
@@ -41,7 +44,7 @@ export const ListItem = React.memo((props: ListItemProps) => {
             <Flex className={style.hireable_indicator}>
                 <span
                     className={style.indicator_wrapper}
-                    style={{ background: userAttributes?.hireable ? `#EB72A2` : '#2DA7CB' }}>
+                    style={{ background: userAttributes?.hireable ? `#2DA7CB` : `#EB72A2` }}>
                     {userAttributes?.hireable ? `Hireable` : `Working`}
                 </span>
             </Flex>

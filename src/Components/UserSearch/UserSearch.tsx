@@ -12,6 +12,9 @@ interface UserSearchProps {
 export const UserSearch = (props: UserSearchProps) => {
     const { data, isLoading, onChange } = props;
 
+    console.log(`USER SEARCH DATA LIST: `, data);
+
+
     return (
         <Flex
             className={style.user_list_wrapper}
@@ -22,7 +25,7 @@ export const UserSearch = (props: UserSearchProps) => {
                     placeholder="Search a github user by name or email"
                     onChange={onChange} />
             </Flex>
-            {data?.map((d: any, a: any) => { return <ListItem data={d} /> })}
+            {data?.map((d: any, key: any) => { return <ListItem key={key} data={d} /> })}
         </Flex>
     );
 };
