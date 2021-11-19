@@ -23,7 +23,7 @@ export const ListItem = React.memo((props: ListItemProps) => {
 
         }
         getUserAttributes()
-    }, [])
+    }, [data])
 
     return (
         <Flex
