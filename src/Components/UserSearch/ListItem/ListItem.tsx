@@ -5,6 +5,20 @@ import { SearchUsersAttributes, UserAttributes, GitHubService } from '../../../A
 import { StringOrDefault } from '../../../utils/stringOrDefault';
 import style from './style.module.scss';
 
+export const Attribute = (props: any) => {
+    return (
+        <>
+            {
+                props?.attribute &&
+                <span className={style.attribute}>
+                    {props.attribute}
+                </span>
+            }
+        </>
+    );
+};
+
+
 interface ListItemProps {
     data: SearchUsersAttributes;
 }
